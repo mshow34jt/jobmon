@@ -1,0 +1,91 @@
+0,MemFree,RAM idle,1048576,GB,/proc/meminfo:MemFree,0,meminfo
+0,MemAvailable,MemAvailable,1048576,GB,memory the kernel thinks it could give apps if needed,0,meminfo
+0,mem_pct_active,App RAM fraction,1,%-active,100*Active/MemTotal,0,meminfo
+0,mem_used,RAM used,1048576,GB,/proc/meminfo: MemTotal - MemFree,0,meminfo
+0,PortXmitData_rate,PortXmitData rate,1,flit/second,omnipath PortXmitData rate,0,opa2
+0,PortRcvData_rate,PortRcvData rate,1,flit/second,omnipath PortRcvData rate,0,opa2
+0,PortXmitPkts_rate,PortXmitPkts rate,1,packet/second,omnipath PortXmitPkts rate,0,opa2
+0,PortRcvPkts_rate,PortRcvPkts rate,1,packet/second,omnipath PortRcvPkts rate,0,opa2
+0,mlx5_symbol_error_rate,symbol errors rate,60,err/minute,lustre port symbol_error rate,0,gw_sysclassib
+0,mlx5_port_rcv_error_rate,rcv errors rate,60,err/minute,lustre port port_rcv_errors rate,0,gw_sysclassib
+0,mlx5_port_rcv_remote_physical_error_rate,rcv_remote errors rate,60,err/minute,lustre port port_rcv_remote_physical_errors rate,0,gw_sysclassib
+0,mlx5_port_rcv_switch_relay_error_rate,rcv_switch_relay errors rate,60,err/minute,lustre port port_rcv_switch_relay_errors rate,0,gw_sysclassib
+0,mlx5_port_xmit_discards_rate,xmit_discards rate,60,discards/minute,lustre port port_xmit_discards rate,0,gw_sysclassib
+0,mlx5_port_xmit_constraint_error_rate,xmit_constraint_error rate,60,err/minute,lustre port port_xmit_constraint_errors rate,0,gw_sysclassib
+0,mlx5_port_rcv_constraint_error_rate,rcv_constraint error rate,60,err/minute,lustre port port_rcv_constraint_errors rate,0,gw_sysclassib
+0,mlx5_local_link_integrity_error_rate,local_link_integrity error rate,60,err/minute,lustre port local_link_integrity_errors rate,0,gw_sysclassib
+0,mlx5_VL15_dropped_rate,VL15_dropped rate,60,drops/minute,lustre port VL15_dropped rate,0,gw_sysclassib
+0,mlx5_port_xmit_data_rate,xmit_data rate,262144,MB/second,lustre port port_xmit_data rate,0,gw_sysclassib
+0,mlx5_port_rcv_data_rate,rcv_data rate,262144,MB/second,lustre port port_rcv_data rate,0,gw_sysclassib
+0,mlx5_port_xmit_packets_rate,xmit_packets rate,1,packets/second,lustre port port_xmit_packets rate,0,gw_sysclassib
+0,mlx5_port_rcv_packets_rate,rcv_packets rate,1,packets/second,lustre port port_rcv_packets rate,0,gw_sysclassib
+0,mlx5_port_unicast_xmit_packets_rate,unicast_xmit_packets rate,1,packets/second,lustre port port_unicast_xmit_packets rate,0,gw_sysclassib
+0,mlx5_port_unicast_rcv_packets_rate,unicast_rcv_packets rate,1,packets/second,lustre port port_unicast_rcv_packets rate,0,gw_sysclassib
+0,mlx5_port_multicast_xmit_packets_rate,multicast_xmit_packets rate,1,packets/second,lustre port port_multicast_xmit_packets rate,0,gw_sysclassib
+0,mlx5_port_multicast_rcv_packets_rate,multicast_rcv_packets_rate,1,packets/second,lustre port port_multicast_rcv_packets rate,0,gw_sysclassib
+0,eth0_rx_bytes_rate,eth0_rx rate,1024,kbyte/second,rx_bytes#eth0,0,procnetdev
+0,eth0_tx_bytes_rate,eth0_tx rate,1024,kbyte/second,tx_bytes#eth0,0,procnetdev
+0,eth2_rx_bytes_rate,eth2_rx rate,1024,kbyte/second,rx_bytes#eth2,0,procnetdev
+0,eth2_tx_bytes_rate,eth2_tx rate,1024,kbyte/second,tx_bytes#eth2,0,procnetdev
+0,ib0_rx_bytes_rate,ib0_rx rate,1024,kbyte/second,rx_bytes#ib0,0,procnetdev
+0,ib0_tx_bytes_rate,ib0_tx_ rate,1024,kbyte/second,tx_bytes#ib0,0,procnetdev
+0,ib1_rx_bytes_rate,ib1_rx rate,1024,kbyte/second,rx_bytes#ib1,0,procnetdev
+0,ib1_tx_bytes_rate,ib1_tx rate,1024,kbyte/second,tx_bytes#ib1,0,procnetdev
+0,nfs_numcalls_rate,nfs total calls rate,1,calls/second,numcalls,0,procnfs
+0,nfs_retransmitts_rate,nfs retrasmit call rate,1,calls/second,retransmitts,0,procnfs
+0,nfs_getattr_rate,nfs getattr rate,1,calls/second,getattr,0,procnfs
+0,nfs_setattr_rate,nfs setattr rate,1,calls/second,setattr,0,procnfs
+0,nfs_lookup_rate,nfs lookup rate,1,calls/second,lookup,0,procnfs
+0,nfs_access_rate,nfs access rate,1,calls/second,access,0,procnfs
+0,nfs_readlink_rate,nfs readlink rate,1,calls/second,readlink,0,procnfs
+0,nfs_read_rate,nfs read rate,1024,kbyte/second,read,0,procnfs
+0,nfs_write_rate,nfs write rate,1024,kbyte/second,write,0,procnfs
+0,nfs_create_rate,nfs create rate,1,calls/second,create,0,procnfs
+0,nfs_mkdir_rate,nfs mkdir rate,1,calls/second,mkdir,0,procnfs
+0,nfs_symlink_rate,nfs symlink rate,1,calls/second,symlink,0,procnfs
+0,nfs_mknod_rate,nfs mknod rate,1,calls/second,mknod,0,procnfs
+0,nfs_remove_rate,nfs remove rate,1,calls/second,remove,0,procnfs
+0,nfs_rmdir_rate,nfs rmdir rate,1,calls/second,rmdir,0,procnfs
+0,nfs_rename_rate,nfs rename rate,1,calls/second,rename,0,procnfs
+0,nfs_link_rate,nfs link rate,1,calls/second,link,0,procnfs
+0,nfs_readdir_rate,nfs readdir rate,1,calls/second,readdir,0,procnfs
+0,nfs_readdirplus_rate,nfs readdirplus rate,1,calls/second,readdirplus,0,procnfs
+0,nfs_fsstat_rate,nfs fsstat rate,1,calls/second,fsstat,0,procnfs
+0,nfs_fsinfo_rate,nfs fsinfo rate,1,calls/second,fsinfo,0,procnfs
+0,nfs_pathconf_rate,nfs pathconf rate,1,calls/second,pathconf,0,procnfs
+0,nfs_commit_rate,nfs commit rate,1,calls/second,commit,0,procnfs
+0,gscratch_read_bytes_rate,gscratch read rate,1048576,MB/second,client.lstats.read_bytes#llite.gscratch,0,Lustre_Client
+0,gscratch_write_bytes_rate,gscratch write rate,1048576,MB/second,client.lstats.write_bytes#llite.gscratch,0,Lustre_Client
+0,gscratch_open_rate,gscratch open rate,1,calls/second,client.lstats.open#llite.gscratch,0,Lustre_Client
+0,gscratch_close_rate,gscratch close rate,1,calls/second,client.lstats.close#llite.gscratch,0,Lustre_Client
+0,gscratch_seek_rate,gscratch seek rate,1,calls/second,client.lstats.seek#llite.gscratch,0,Lustre_Client
+0,gscratch_getattr_rate,gscratch getattr rate,1,calls/second,client.lstats.getattr#llite.gscratch,0,Lustre_Client
+0,gscratch_create_rate,gscratch create rate,1,calls/second,client.lstats.create#llite.gscratch,0,Lustre_Client
+0,nscratch_read_bytes_rate,nscratch read rate,1048576,MB/second,client.lstats.read_bytes#llite.nscratch,0,Lustre_Client
+0,nscratch_write_bytes_rate,nscratch write rate,1048576,MB/second,client.lstats.write_bytes#llite.nscratch,0,Lustre_Client
+0,nscratch_open_rate,nscratch open rate,1,calls/second,client.lstats.open#llite.nscratch,0,Lustre_Client
+0,nscratch_close_rate,nscratch close rate,1,calls/second,client.lstats.close#llite.nscratch,0,Lustre_Client
+0,nscratch_seek_rate,nscratch seek rate,1,calls/second,client.lstats.seek#llite.nscratch,0,Lustre_Client
+0,nscratch_getattr_rate,nscratch getattr rate,1,calls/second,client.lstats.getattr#llite.nscratch,0,Lustre_Client
+0,nscratch_create_rate,nscratch create rate,1,calls/second,client.lstats.create#llite.nscratch,0,Lustre_Client
+0,user_pct,USER,100,%,fraction of available hyperthread time spent in user processes,0,procstat_72
+0,nice_pct,NICE,100,%,fraction of available hyperthread time spent in niced processes,0,procstat_72
+0,sys_pct,SYS,100,%,fraction of available hyperthread time spent in kernel processes,0,procstat_72
+0,idle_pct,IDLE,100,%,fraction of available hyperthread time spent doing nothing,0,procstat_72
+0,iowait_pct,IOWAIT,100,%,fraction of available core time spent in iowait,0,procstat_72
+0,irq_rate,interrupts/second,1,int/second,interrupts serviced rate,0,procstat_72
+0,context_switches_rate,context switches/second,1,cs/second,context switching rate,0,procstat_72
+0,procs_running,processes running,1,proc,processes currently running,0,procstat_72
+0,procs_blocked,processes blocked,1,proc,processes waiting to run,0,procstat_72
+0,user_pct,USER,100,%,fraction of available core time spent in user processes,0,procstat_16
+0,nice_pct,NICE,100,%,fraction of available core time spent in niced processes,0,procstat_16
+0,sys_pct,SYS,100,%,fraction of available core time spent in kernel processes,0,procstat_16
+0,idle_pct,IDLE,100,%,fraction of available core time spent doing nothing,0,procstat_16
+0,iowait_pct,IOWAIT,100,%,fraction of available core time spent in iowait,0,procstat_16
+0,irq_rate,interrupts/second,1,int/second,interrupts serviced rate,0,procstat_16
+0,context_switches_rate,context switches/second,1,cs/second,context switching rate,0,procstat_16
+0,procs_running,processes running,1,proc,processes currently running,0,procstat_16
+0,procs_blocked,processes blocked,1,proc,processes waiting to run,0,procstat_16
+0,load1min,load 1 minute average,100,proc,1 minute load average from /proc/loadavg,0,loadavg
+0,load5min,load 5 minute average,100,proc,5 minute load average from /proc/loadavg,0,loadavg
+0,load15min,load 15 minute average,100,proc,15 minute load average from /proc/loadavg,0,loadavg

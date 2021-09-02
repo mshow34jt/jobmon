@@ -1,0 +1,15 @@
+
+ncsa_function_csv.conf
+see man Plugin_store_function_csv for the explanation of this file.
+It is what I derived the metadata file from manually.
+
+ncsa-snl-metadata-v0.tsv
+tab separated metadata (strings are not quoted)
+exported from google doc
+
+ncsa-snl-metadata-v0.csv
+comma separated metadata (no commas appear in string fields, strings are not quoted.)
+cat ncsa-snl-metadata-v0.tsv | sed -e 's/^I/,/g' > ncsa-snl-metadata-v0.csv
+
+ncsa-snl-metadata-v0-quoted.csv
+comma separated, strings heavily quoted (prefer to avoid this format as it requires a manual libreoffice reformat of .tsv)
