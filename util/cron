@@ -6,3 +6,4 @@
 * * * * * /jobmon/bin/load_procnetdev.sh >> /jobmon/log/procnetdevcron.log  2>&1
 * * * * * /jobmon/bin/load_gw_sysclassib.sh >> /jobmon/log/gw_sysclassibcron.log  2>&1
 * * * * * /jobmon/bin/load_procstat_72.sh >> /jobmon/log/procstat_72cron.log  2>&1
+
