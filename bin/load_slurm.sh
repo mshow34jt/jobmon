@@ -1,6 +1,6 @@
 for i in `ls -tr /scratch_B/slurm/eclipse/spool/job_detail/`
 do 
-	zcat  /scratch_B/slurm/eclipse/spool/job_detail/$i |/ascldap/users/mtshowe/vitess/parsers/parse_slurm; 
+	zcat  /scratch_B/slurm/eclipse/spool/job_detail/$i |/jobmon/bin/parse_slurm; 
 	mv  /scratch_B/slurm/eclipse/spool/job_detail/$i  /scratch_B/slurm/eclipse/spool/complete/job_detail/$i
 	lastfile="/scratch_B/slurm/eclipse/spool/complete/job_detail/$i"
 done
