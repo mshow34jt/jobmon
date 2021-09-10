@@ -1,13 +1,13 @@
-for i in `ls -tr /scratch_B/slurm/eclipse/spool/job_detail/`
+for i in `ls -tr /data/slurm`
 do 
-	zcat  /scratch_B/slurm/eclipse/spool/job_detail/$i |/jobmon/bin/parse_slurm; 
-	mv  /scratch_B/slurm/eclipse/spool/job_detail/$i  /scratch_B/slurm/eclipse/spool/complete/job_detail/$i
-	lastfile="/scratch_B/slurm/eclipse/spool/complete/job_detail/$i"
+	zcat  /data/slurm/$i |/jobmon/bin/parse_slurm; 
+	mv  /data/slurm/$i  /data/slurm/bak/$i
+	lastfile="/data/slurm/$i"
 done
 
 
 if [ -n "$lastfile" ]
 then
-	echo $lastfile > /ascldap/users/mtshowe/vitess/log/lastslurm.log
+	echo $lastfile > /data/log/lastslurm.log
 fi
 
