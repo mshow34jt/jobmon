@@ -5,7 +5,10 @@ do
 	cd /data/ldms
 	cat  $i |/jobmon/bin/parse_meminfo.pl; 
 	mv  $i /data/ldms/bak  
-	mv  /data/ldms/meminfo.HEADER* 	/data/ldms/bak
+	if [ -f /data/ldms/meminfo.HEADER* ]
+	then
+		mv  /data/ldms/meminfo.HEADER* 	/data/ldms/bak
+	fi
 done
 
 
