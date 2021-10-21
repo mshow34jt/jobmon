@@ -1,5 +1,5 @@
 #!/bin/bash
-for i in `find /data/ldms -name "meminfo.1*"`
+for i in `find /data/ldms -maxdepth 1 -type f -name "meminfo.1*"`
 do 
 	#echo $i
 	cd /data/ldms
