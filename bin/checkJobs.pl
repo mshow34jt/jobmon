@@ -12,16 +12,18 @@ use DBI;
  my @jobs =();
  my @tests;
  my %jobNids;
- my $dsn= "DBI:mysql:WORK:host=127.0.0.1:port=15306";
+ my $nodeOffset=600000;
+ my $dsn="DBI:mysql:WORK:host=127.0.0.1:port=15306";
  my $thread_q = Thread::Queue -> new();
 
- my $iscqdbconro = DBI->connect($dsnLocal)||
+ my $iscdbconro = DBI->connect($dsnLocal)||
                         print STDERR "FATAL: Could not connect to database.\n$DBI::errstr\n";
- my $iscqdbconrw = DBI->connect($dsnLocal)||
+ my $iscdbconrw = DBI->connect($dsnLocal)||
                         print STDERR "FATAL: Could not connect to database.\n$DBI::errstr\n";
- my $iscqdbconWork = DBI->connect($dsn)||
+ my $workdbconro = DBI->connect($dsn)||
                         print STDERR "FATAL: Could not connect to database.\n$DBI::errstr\n";
-
+ my $workdbconrw = DBI->connect($dsn)||
+                        print STDERR "FATAL: Could not connect to database.\n$DBI::errstr\n";
 
 
 
@@ -36,25 +38,28 @@ use DBI;
         my $now=time();
 
 my $query="set workload='olap'";
- my $sth=$iscqdbconro->prepare($query);
+ my $sth=$iscdbconro->prepare($query);
  $sth->execute();
 
+ $sth=$workdbconro->prepare($query);
+ $sth->execute();
+ 
  $query="select jobid from ISC.jobs where status='Running'";
 
- $sth=$iscqdbconro->prepare($query);
+ $sth=$iscdbconro->prepare($query);
  $sth->execute();
 
  while (my @row = $sth->fetchrow_array) {
 #   print "jobid= $row[0]\n";
 #   $joblist.=$row[0].",";
-    push(@runningJobs,$row[0]);
+   push(@runningJobs,$row[0]);
  }
 
 
 
 # $query="select jobid from ISC.jobs where status='Running' and RLneednodes like '%:xk%'";
 #
-# $sth=$iscqdbconro->prepare($query);
+# $sth=$iscdbconro->prepare($query);
 # $sth->execute();
 #
 # while (my @row = $sth->fetchrow_array) {
@@ -68,20 +73,20 @@ my $query="set workload='olap'";
         my $nidList;
 		my $host;
         my $query="select nid from ISC.job_hosts where jobid=$job";
-        my $sth=$iscqdbconro->prepare($query);
+        my $sth=$iscdbconro->prepare($query);
         $sth->execute();
         while (my @row = $sth->fetchrow_array) {
-			  $host=700000+$row[0];
+			  $host=$nodeOffset+$row[0];
               $nidList.=$host.",";
         }
         chop $nidList;
         $jobNids{$job}=$nidList;
-     #  print "nids=$jobNids{$job}\n";
+ #      print "nids=$jobNids{$job}\n";
  } #end foreach job
 
  $query = "select testName,testType,typeId,duration,metric,threshold,calc,grouping from ISC.tests where testType='job' ";
 # print "Query is $query\n";
- $sth = $iscqdbconro->prepare($query)
+ $sth = $iscdbconro->prepare($query)
         or die "Can't execute SQL statement: $DBI::errstr\n";
  $sth->execute()
         or die "Can't execute SQL statement: $DBI::errstr\n";
@@ -114,13 +119,14 @@ my $index=0;
 
    } #end While each test
 
-  #my $sthFail=$iscqdbconrw->prepare("delete from ISC.testFails where cTime<$now");
+  #my $sthFail=$iscdbconrw->prepare("delete from ISC.testFails where cTime<$now");
   #$sthFail->execute();
 
 
- $iscqdbconro->disconnect();
- $iscqdbconrw->disconnect();
- $iscqdbconWork->disconnect();
+ $iscdbconro->disconnect();
+ $iscdbconrw->disconnect();
+ $workdbconro->disconnect();
+ $workdbconrw->disconnect();
 
 
 sub processJobs{
@@ -134,7 +140,7 @@ sub processJobs{
                 my $sth2;
                 my $fail=0;
                $query="select start from ISC.jobs where jobid=$job";
-               $sth2=$iscqdbconro->prepare($query);
+               $sth2=$iscdbconro->prepare($query);
                $sth2->execute();
 
                 while (my @row2 = $sth2->fetchrow_array) {
@@ -147,23 +153,24 @@ sub processJobs{
                 #$query="select $conditions where CompId in ($jobNids{$job}) and cTime between $start and $end";
                 if ($groupby eq "none")
                 {
-                        $query="select $calc(metric) from WORK.$metric where CompId in ($jobNids{$job}) and cTime between $start and $end";
+                        $query="select $calc(metric) from $metric where CompId in ($jobNids{$job}) and cTime between $start and $end";
                 }
                 else
                 {
-                        $query="select $calc(metric),$groupby from WORK.$metric where CompId in ($jobNids{$job}) and cTime between $start and $end group by $groupby";
+                        $query="select $calc(metric),$groupby from $metric where CompId in ($jobNids{$job}) and cTime between $start and $end group by $groupby";
                 }
                 #print "$query\n";
                 #print "Processed $testName for job:$job\n";
-                $sth2=$iscqdbconro->prepare($query);
+                $sth2=$workdbconro->prepare($query);
                 $sth2->execute();
                 while( my @row =  $sth2->fetchrow_array) {
+			#print "processing rows\n";
                         my $dtime=$end-$start;
                         if(!defined $row[0])
                         {
                                 #print("Start=$start End=$end duration=$dtime  Jobstart=$jobStart\n");
                                 #print Dumper(@row);
-                                #print("What? $query\n");
+                                print("What? $query\n");
                         }
                         elsif($threshold>0)
                         {
@@ -189,20 +196,20 @@ sub processJobs{
                 {
                         $query=  sprintf "select failCount from ISC.testFails where jobId=$job and testName=\"%s\"",$testName;
                         #print "Query= $query\n";
-                        my $sthFails=$iscqdbconrw->prepare($query);
+                        my $sthFails=$iscdbconrw->prepare($query);
                 #       print "testquery: $query\n";
                         $sthFails->execute();
                         if( my @row =  $sthFails->fetchrow_array) {
                                 my $failCount=$row[0]+1;
                                 $query="update ISC.testFails set cTime=$now , failCount=$failCount where jobid=$job and testName=\"$testName\"";
                                 #print "Query= $query\n";
-                                $sthFails=$iscqdbconrw->prepare($query);
+                                $sthFails=$iscdbconrw->prepare($query);
                                 $sthFails->execute();
                         }
                         else
                         {
-                                $query= sprintf "insert into ISC.testFails(cTime,failcount,testType,typeId,testName,jobid,testLink) values($now,1,%s,%s,\"%s\",%s,\"%s\")", $iscqdbconrw->quote($testType), $iscqdbconrw->quote($metric),  $testName, $job,"https://mon1.sandia.gov/~mtshowe/jobmon/qjobchart.php?metric=$metric&calc=$calc&jobid=$job";
-                                $sthFails=$iscqdbconrw->prepare($query);
+                                $query= sprintf "insert into ISC.testFails(cTime,failcount,testType,typeId,testName,jobid,testLink) values($now,1,%s,%s,\"%s\",%s,\"%s\")", $iscdbconrw->quote($testType), $iscdbconrw->quote($metric),  $testName, $job,"https://mon1.sandia.gov/~mtshowe/jobmon/qjobchart.php?metric=$metric&calc=$calc&jobid=$job";
+                                $sthFails=$iscdbconrw->prepare($query);
                                 #print "query: $query\n";
                                 $sthFails->execute();
                         }
@@ -210,7 +217,7 @@ sub processJobs{
         }
 
 
-        my $sth2=$iscqdbconWork->prepare("drop table $metric");
+        my $sth2=$workdbconrw->prepare("drop table $metric");
         $sth2->execute();
 
 
@@ -231,10 +238,9 @@ sub loadMetricData{
  my $numLines=8000;
  my $counter=0;
  my $values;
-# my $dsn= "DBI:mysql:WORK:host=127.0.0.1:port=15306";
 
 
- my $queryHeader="insert into WORK.$metric(cTime,CompId,metric) values ";
+ my $queryHeader="insert into $metric(cTime,CompId,metric) values ";
 
  sub worker
  {
@@ -274,14 +280,14 @@ $sth_thread->execute();
 while (my @row = $sth_thread->fetchrow_array) {
 	$tableName=$row[0];
 
-	print "table is $tableName\n";
+	#print "table is $tableName\n";
 }
 $sth_thread->finish;
 $tableName='ISC.'.$tableName;
 #$tableName='ISC.'."procstat_72";
 $getQuery= "select cTime,CompId,$metric from $tableName where cTime between $t1 and $t2";
 #print "$getQuery\n";
-my $sth_thread = $dbGetCon->prepare($getQuery);
+$sth_thread = $dbGetCon->prepare($getQuery);
 $sth_thread->execute();
 
 while (my @row = $sth_thread->fetchrow_array) {

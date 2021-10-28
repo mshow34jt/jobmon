@@ -2,11 +2,11 @@
  
 while(1)
  {
-           `echo starting >> /jobmon/log/jobmon.out`;
-           `uptime >> /jobmon/log/jobmon.out`;
-           `perl /jobmon/bin/checkJobs.pl >> /jobmon/log/jobmon.out`;
-           `echo finished >> /jobmon/log/jobmon.out`;
-           `uptime >> /jobmon/log/jobmon.out`;
+           `echo starting >> /data/log/jobmon.out`;
+           `uptime >> /data/log/jobmon.out`;
+           `/data/ldms/jobmon/bin/checkJobs.pl >> /data/log/jobmon.out`;
+           `echo finished >> /data/log/jobmon.out`;
+           `uptime >> /data/log/jobmon.out`;
            sleep (120);
  
  }
