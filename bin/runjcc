@@ -1,6 +1,7 @@
 #!/bin/bash
 
-slurmfile=`cat /ascldap/users/mtshowe/vitess/log/lastslurm.log`
-echo Processing: $slurmfile
+slurmfile=`cat /data/log/lastslurm.log`
+bakfile=${slurmfile//slurm/slurm\/bak}
+echo Processing: $bakfile
 echo List of jobs in the database not running in the last slurm dump: 
-zcat $slurmfile | /ascldap/users/mtshowe/vitess/util/jcc.pl
+zcat $bakfile | /jobmon/bin/jcc.pl

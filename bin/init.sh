@@ -1,6 +1,6 @@
 #!/bin/bash
 
-uptime >> /jobmon/log/jobmon.out
-echo "starting parsers and analysis" >>/jobmon/log/jobmon.out
-perl /jobmon/bin/runparsers.pl &
-perl /jobmon/bin/runcheck.pl 
+uptime >> /data/log/jobmon.out
+echo "starting parsers and analysis" >>/data/log/jobmon.out
+perl /data/ldms/jobmon/bin/runparsers.pl &
+perl /data/ldms/jobmon/bin/runcheck.pl 

@@ -8,6 +8,5 @@ done
 
 if [ -n "$lastfile" ]
 then
-	echo $lastfile > /jobmon/log/lastslurm.log
+	echo $lastfile > /data/log/lastslurm.log
 fi
-
