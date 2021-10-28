@@ -2,10 +2,11 @@
  
 while(1)
  {
-           `echo starting parsers >> /jobmon/log/jobmon.out`;
-           `uptime >> /jobmon/log/jobmon.out`;
-           `/jobmon/bin/load_slurm.sh`;	   
-           `/jobmon/bin/load_meminfo.sh`;	   
+           `echo starting parsers >> /data/log/jobmon.out`;
+           `uptime >> /data/log/jobmon.out`;
+           `./load_slurm.sh`;	   
+           `./load_meminfo.sh`;	   
+           `./load_loadavg.sh`;	   
 #           `/jobmon/bin/load_procstat_72.sh`;	   
 #           `/jobmon/bin/load_procnfs.sh`;	   
 #           `/jobmon/bin/load_opa2.sh`;	   
