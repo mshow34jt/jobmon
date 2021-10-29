@@ -4,7 +4,7 @@ do
 	#echo $i
 	cat  $i |/jobmon/bin/parse_gw_sysclassib.pl; 
 	mv  $i /data/ldms/bak  
-	mv  /data/ldms/gw_sysclassib.HEADER*  2> /dev/null
+	mv  /data/ldms/gw_sysclassib.HEADER* /data/ldms/bak 2> /dev/null
 done
 
 
