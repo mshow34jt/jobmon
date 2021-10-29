@@ -4,7 +4,7 @@ do
 	#echo $i
 	cat  $i |/jobmon/bin/parse_procnfs.pl; 
 	mv  $i /data/ldms/bak  
-	mv  /data/ldms/procnfs.HEADER*  2> /dev/null
+	mv  /data/ldms/procnfs.HEADER*  /data/ldms/bak 2> /dev/null
 done
 
 
