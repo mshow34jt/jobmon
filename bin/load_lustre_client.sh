@@ -4,7 +4,7 @@ do
 	#echo $i
 	cat  $i |/jobmon/bin/parse_lustre_client.pl; 
 	mv  $i /data/ldms/bak  
-	mv  /data/data/ldms/lustre_client.HEADER*  /data/ldms/bak 2> /dev/null
+	mv  /data/ldms/lustre_client.HEADER*  /data/ldms/bak 2> /dev/null
 done
 
 
