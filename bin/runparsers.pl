@@ -11,6 +11,7 @@ while(1)
            `/jobmon/bin/load_procnfs.sh`;	   
            `/jobmon/bin/load_opa2.sh`;	   
            `/jobmon/bin/load_lustre_client.sh`;	   
+           `/jobmon/bin/load_gw_sysclassib.sh`;	
            sleep (60);
  
  }
