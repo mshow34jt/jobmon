@@ -4,5 +4,5 @@ ports='15100 15101 15102 15110 15111 15112 15120 15121 15122 15130 15131 15132 1
 for i in $ports
 do
         echo "$i:"
-		        curl http://bitzer2.sandia.gov:$i/healthz
+		        curl http://localhost:$i/healthz
 	done
