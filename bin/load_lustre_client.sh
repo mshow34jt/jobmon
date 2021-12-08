@@ -1,5 +1,5 @@
 #!/bin/bash
-for i in `find /data/ldms -maxdepth 1 -type f -name lustre_client.1*`
+for i in `find /data/ldms -maxdepth 1 -type f -name "lustre_client.1*"`
 do 
 	#echo $i
 	cat  $i |/jobmon/bin/parse_lustre_client.pl; 
