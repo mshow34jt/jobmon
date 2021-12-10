@@ -4,5 +4,5 @@ do
 	#echo $i
 	cat  $i |/jobmon/bin/parse_procnet.pl; 
 	mv  $i /data/ldms/bak  
-	mv  /data/ldms/procnet.HEADER*  2> /dev/null
+	mv  /data/ldms/procnet.HEADER* /ldms/ldms/bak 2> /dev/null
 done
