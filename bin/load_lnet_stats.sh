@@ -4,5 +4,5 @@ do
 	#echo $i
 	cat  $i |/jobmon/bin/parse_lnet_stats.pl; 
 	mv  $i /data/ldms/bak  
-	mv  /data/ldms/lnet_stats.HEADER*  2> /dev/null
+	mv  /data/ldms/lnet_stats.HEADER* /data/ldms/bak 2> /dev/null
 done
