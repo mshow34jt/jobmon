@@ -208,7 +208,7 @@ sub processJobs{
                         }
                         else
                         {
-                                $query= sprintf "insert into ISC.testFails(cTime,failcount,testType,typeId,testName,jobid,testLink) values($now,1,%s,%s,\"%s\",%s,\"%s\")", $iscdbconrw->quote($testType), $iscdbconrw->quote($metric),  $testName, $job,"https://mon1.sandia.gov/~mtshowe/jobmon/qjobchart.php?metric=$metric&calc=$calc&jobid=$job";
+                                $query= sprintf "insert into ISC.testFails(cTime,failcount,testType,typeId,testName,jobid,testLink) values($now,1,%s,%s,\"%s\",%s,\"%s\")", $iscdbconrw->quote($testType), $iscdbconrw->quote($metric),  $testName, $job,"http://localhost:3000/d/yijAw7lMk/metric-charts?orgId=1&var-aggregation=$calc&var-data=$metric&var-Job=$job";
                                 $sthFails=$iscdbconrw->prepare($query);
                                 #print "query: $query\n";
                                 $sthFails->execute();
