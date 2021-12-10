@@ -12,6 +12,8 @@ while(1)
            `/jobmon/bin/load_opa2.sh`;	   
            `/jobmon/bin/load_lustre_client.sh`;	   
            `/jobmon/bin/load_gw_sysclassib.sh`;	
+           `/jobmon/bin/load_lnet_stats.sh`;	
+           `/jobmon/bin/load_procnet.sh`;	
            sleep (60);
  
  }
