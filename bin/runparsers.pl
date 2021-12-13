@@ -2,8 +2,8 @@
  
 while(1)
  {
-           `echo starting parsers >> /data/log/jobmon.out`;
-           `uptime >> /data/log/jobmon.out`;
+           `echo starting parsers >> /data/log/jobmon.log`;
+           `uptime >> /data/log/jobmon.log`;
            `/jobmon/bin/load_slurm.sh`;	   
            `/jobmon/bin/load_meminfo.sh`;	   
            `/jobmon/bin/load_loadavg.sh`;	   
