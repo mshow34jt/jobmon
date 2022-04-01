@@ -14,12 +14,32 @@ my $joblist="";
 my $query;
 my $sth;
 my $sth2;
+my $lineNum=0;
+my $statusIdx=0;
+my $elements=0;
+
+
 while (my $line = <STDIN>) {
 
 my @job=split(/\|/,$line);
 
+if ($lineNum==0)
+        {
+                foreach (@job)
+                {
+                        if ($_ eq "State")
+                        {
+                                #       print "$elements: $_\n";
+                                $statusIdx=$elements;
+                        }
+                        $elements++;
+                }
+        }
+
+
+
 #print Dumper \@job;
-if ($job[72] eq "RUNNING")
+if ($job[$statusIdx] eq "RUNNING")
 	{
 		$joblist.="'$job[1]',";	
 	}
