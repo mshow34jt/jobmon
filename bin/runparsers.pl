@@ -14,6 +14,7 @@ while(1)
            `/jobmon/bin/load_gw_sysclassib.sh`;	
            `/jobmon/bin/load_lnet_stats.sh`;	
            `/jobmon/bin/load_procnet.sh`;	
+           `/jobmon/bin/load_coretemp.sh`;	
            sleep (60);
  
  }
