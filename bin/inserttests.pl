@@ -13,7 +13,7 @@ my $queryHeader="insert ignore into tests (`id`,testName,testType,typeId,duratio
 #my $filename=$ARGV[0];
 my $lineCounter=0;
 my $valCounter=0;
-my $valCount=8;
+my $valCount=10;
 my $f1;
 my $f2;
 my $f3;
