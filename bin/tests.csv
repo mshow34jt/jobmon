@@ -1,2 +1,2 @@
-lowcpu,job,all,600,user_pct,-10,sum,none
-highmem,job,all,600,MemAvailable,-100000,min,none
+1,lowcpu,job,all,600,user_pct,-10,sum,none,""
+2,highmem,job,all,600,MemAvailable,-100000,min,none,""
